@@ -1,77 +1,122 @@
-# Cursor Rules - 程式碼簡潔性規範
+---
+alwaysApply: false
+---
+# Cursor Rules - Code Simplicity Standards
 
-## 核心原則
+## Core Principles
 
-### 單一職責
-- 一個函式只處理一件事
-- 分離 I/O、流程控制、分析邏輯
-- 避免職責混雜（流程控制 + 錯誤處理 + 輸出 + 狀態管理）
+### Single Responsibility
+- One function handles only one thing
+- Separate I/O, flow control, and analysis logic
+- Avoid mixed responsibilities (flow control + error handling + output + state management)
 
-### 抽象重複
-- 封裝常見的「檢查 + 回傳錯誤」邏輯
-- 共用相似的日誌、錯誤處理邏輯
-- 分離 demo code 與 library code
+### Abstract Repetition
+- Encapsulate common "check + return error" logic
+- Share similar logging and error handling logic
+- Separate demo code from library code
 
-## 錯誤處理
+## Error Handling
 
-### 結構化結果
-- 使用 dataclass/Enum 而非 (bool, str, int)
-- 避免 startswith("SUCCESS") 等字串判斷
-- 集中錯誤處理，減少散落的 if not ... return
+### Structured Results
+- Use dataclass/Enum instead of (bool, str, int)
+- Avoid string comparisons like startswith("SUCCESS")
+- Centralize error handling, reduce scattered if not ... return
 
-### 避免重複
-- 不要大量 if not ... return
-- 避免重複的 try/except
-- 統一錯誤訊息格式
+### Avoid Repetition
+- Don't use excessive if not ... return
+- Avoid repetitive try/except blocks
+- Standardize error message format
 
-## 輸出與日誌
+## Output and Logging
 
-### 使用 logging
-- 替代過多的 print 語句
-- 依情境設定等級 (info, error, debug)
-- 避免每個分支都 print + 分隔線 + emoji
+### Use Logging
+- Replace excessive print statements
+- Set appropriate levels based on context (info, error, debug)
+- Avoid print + separators + emoji in every branch
 
-### 安全輸出
-- 遮罩或截斷敏感資訊
-- 不要直接 log 密碼、完整回應
+### Secure Output
+- Mask or truncate sensitive information
+- Don't directly log passwords or complete responses
 
-## 可重用性
+## Reusability
 
-### 避免硬編碼
-- 測試密碼、次數、路徑透過參數/CLI 傳入
-- 不要寫死固定數值
+### Avoid Hardcoding
+- Pass test passwords, counts, paths through parameters/CLI
+- Don't hardcode fixed values
 
-### API 設計
-- 避免 demo 式設計（步驟全列出）
-- 抽象化重複邏輯，提高重用性
+### API Design
+- Avoid demo-style design (listing all steps)
+- Abstract repetitive logic to improve reusability
 
-## 狀態管理
+## State Management
 
-### 減少依賴
-- 回傳結果而非修改 self.*
-- 避免依賴物件屬性 (self.session_id 等)
-- 減少狀態耦合
+### Reduce Dependencies
+- Return results instead of modifying self.*
+- Avoid depending on object properties (self.session_id, etc.)
+- Reduce state coupling
 
-### 資源管理
-- 使用 with context manager
-- 統一管理網路請求 (session, timeout, verify, retry)
+### Resource Management
+- Use with context managers
+- Centralize network request management (session, timeout, verify, retry)
 
-## 安全與維護
+## Security and Maintenance
 
-### 網路安全
-- 統一管理網路請求設定
-- 避免手動展開設定
+### Network Security
+- Centralize network request settings
+- Avoid manual configuration expansion
 
-### 程式碼品質
-- 平衡安全性和簡潔性
-- 保持可讀性和可維護性
+### Code Quality
+- Balance security and simplicity
+- Maintain readability and maintainability
 
-## 目標
+## Production Readiness Rules
 
-遵循這些規則：
-1. 寫出更簡潔、可讀的程式碼
-2. 提高可維護性和重用性
-3. 減少重複程式碼和錯誤處理
-4. 建立更好的程式架構
-5. 提升安全性和健壯性
+### Remove All Debug Logging
+**Rule:** No debug logging in production code
+- Remove all `logger.debug()` statements
+- Remove `print()` statements (except CLI tools)
+- Set `enable_debug_logging: False` in config
+- Keep only `logger.info()`, `logger.warning()`, `logger.error()` for production
 
+### Simplify State Management
+**Rule:** Use one state object per file
+- Single `FileState` enum per file
+- One state manager class (`StateMachineService`)
+- Remove `UnifiedStateManager` complexity
+- Store only essential state: `file_path`, `current_state`, `last_updated`
+
+### Remove Unnecessary Error Handling Complexity
+**Rule:** Simple error handling only
+- Maximum 1 try-catch per method
+- No nested try-catch blocks
+- Use simple error logging: `logger.error(f"Failed: {e}")`
+- Remove complex error recovery mechanisms
+- Fail fast, don't retry excessively
+
+### Streamline Configuration
+**Rule:** Minimal configuration
+- Maximum 10 configuration parameters
+- Use simple dict: `{'timeout': 30, 'max_files': 1000}`
+- Remove environment variable complexity
+- No configuration merging functions
+- Single config object per component
+
+### Eliminate Redundant Methods and Checks
+**Rule:** One method per responsibility
+- Remove duplicate validation methods
+- One callback registration method per class
+- Remove redundant health check methods
+- Combine similar methods into single implementations
+
+## Goals
+
+Following these rules will:
+1. Write more concise, readable code
+2. Improve maintainability and reusability
+3. Reduce duplicate code and error handling
+4. Build better program architecture
+5. Enhance security and robustness
+6. Never use fallback data - display errors directly when they occur
+
+## Overall Principle
+Keep it simple, remove complexity, focus on core functionality only.

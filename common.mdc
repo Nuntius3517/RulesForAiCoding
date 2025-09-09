@@ -1,0 +1,9 @@
+---
+alwaysApply: false
+---
+Writing code , using the @coding.mdc
+Writing dev-doc , using the @dev-doc.mdc
+Testing code using the @testing.mdc
+Generate any test script and markdown, and remember to add a timestamp in front of the filename, using the get_current_time mcp to get the time.
+Example timestamp format: 20250905T070000Z_filename.md
+Try to fix things at the cause, not the symptom.

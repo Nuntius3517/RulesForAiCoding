@@ -1,0 +1,117 @@
+---
+alwaysApply: false
+---
+# Mermaid System Status Visualization Format
+
+## Overview
+Use this standardized Mermaid format to create clear, comprehensive system status visualizations that are easy to understand and maintain.
+
+## Standard Diagram Types
+
+### 1. System Architecture Overview
+```mermaid
+graph TB
+    subgraph "Layer Name"
+        COMPONENT[Component Name<br/>✅ Status]
+        COMPONENT2[Component Name<br/>⚠️ Partial]
+        COMPONENT3[Component Name<br/>❌ Missing]
+    end
+    
+    %% Connections
+    COMPONENT --> COMPONENT2
+    COMPONENT2 -.-> COMPONENT3
+    
+    %% Styling
+    classDef implemented fill:#d4edda,stroke:#155724,color:#155724
+    classDef missing fill:#f8d7da,stroke:#721c24,color:#721c24
+    classDef partial fill:#fff3cd,stroke:#856404,color:#856404
+    classDef configured fill:#d1ecf1,stroke:#0c5460,color:#0c5460
+    
+    class COMPONENT implemented
+    class COMPONENT2 partial
+    class COMPONENT3 missing
+```
+
+### 2. Processing Flow Sequence
+```mermaid
+sequenceDiagram
+    participant User
+    participant Component1 as Component Name
+    participant Component2 as Component Name
+    participant DB as Database
+    
+    Note over User,DB: Current Status: DESCRIPTION
+    
+    User->>Component1: Action
+    Component1->>Component1: Process ✅
+    Component1->>Component2: Trigger
+    Component2-->>Component1: Response
+    
+    alt Success Path
+        Component2->>DB: Store data ✅
+    else Error Path
+        Note over Component1: Fallback mode
+    end
+```
+
+## Status Indicators
+- ✅ **Complete/Implemented** - Fully functional component
+- ⚠️ **Partial** - Partially implemented or needs work
+- ❌ **Missing** - Not implemented or broken
+- 🔄 **In Progress** - Currently being developed
+- 📊 **Configured** - Setup complete but not active
+
+## Color Coding
+- **Green (#d4edda)**: Implemented/Complete components
+- **Red (#f8d7da)**: Missing/Broken components  
+- **Yellow (#fff3cd)**: Partial/Incomplete components
+- **Blue (#d1ecf1)**: Configured/Setup components
+
+## Connection Types
+- **Solid arrows (-->)**: Active/Working connections
+- **Dotted arrows (-.->)**: Missing/Broken connections
+- **Bidirectional (<-->)**: Two-way communication
+
+## Required Sections
+
+### 1. System Architecture Overview
+- Group components by logical layers
+- Show all major components and their status
+- Include connection flows between components
+- Use consistent styling and color coding
+
+### 2. Processing Flow Sequence
+- Show step-by-step process flow
+- Include user interactions
+- Highlight success and error paths
+- Show current system status
+
+### 3. Component Status Summary Table
+| Component | Status | Description |
+|-----------|--------|-------------|
+| Component Name | ✅ Complete | Brief description |
+
+### 4. Key Issues List
+- Numbered list of critical problems
+- Clear, actionable descriptions
+- Prioritized by impact
+
+### 5. Next Steps Required
+- Numbered list of required actions
+- Specific, implementable tasks
+- Ordered by priority/dependency
+
+## Best Practices
+1. **Consistency**: Use same status indicators throughout
+2. **Clarity**: Keep component names descriptive but concise
+3. **Completeness**: Include all major system components
+4. **Visual Hierarchy**: Group related components in subgraphs
+5. **Status Accuracy**: Ensure status reflects actual implementation state
+6. **Actionable**: Make issues and next steps specific and implementable
+
+## Usage Examples
+- System architecture documentation
+- Project status reports
+- Technical debt visualization
+- Integration flow documentation
+- Component dependency mapping
