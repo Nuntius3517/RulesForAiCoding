@@ -54,64 +54,135 @@ sequenceDiagram
     end
 ```
 
+### 3. Data Flow Diagrams
+```mermaid
+flowchart TD
+    A["Input Data<br/>data_type: description"] --> B{"Validation Check"}
+    
+    B -->|"Valid"| C["Process Step 1<br/>operation description"]
+    B -->|"Invalid"| D["Error Handling<br/>error message"]
+    
+    C --> E["Process Step 2<br/>transformation"]
+    E --> F["Output Data<br/>result description"]
+    
+    D --> G["Error Response<br/>error details"]
+    
+    %% Styling for data flow
+    style A fill:#e1f5fe,stroke:#01579b,color:#000000
+    style F fill:#c8e6c9,stroke:#2e7d32,color:#000000
+    style D fill:#ffcdd2,stroke:#c62828,color:#000000
+    style G fill:#ffcdd2,stroke:#c62828,color:#000000
+```
+
 ## Status Indicators
-- ✅ **Complete/Implemented** - Fully functional component
-- ⚠️ **Partial** - Partially implemented or needs work
-- ❌ **Missing** - Not implemented or broken
-- 🔄 **In Progress** - Currently being developed
-- 📊 **Configured** - Setup complete but not active
+- ✅ **Complete** - Fully functional
+- ⚠️ **Partial** - Needs work
+- ❌ **Missing** - Not implemented
+- 🔄 **In Progress** - Being developed
+- 📊 **Configured** - Setup complete
 
-## Color Coding
-- **Green (#d4edda)**: Implemented/Complete components
+## Colors
+- **Green (#d4edda)**: Complete components
 - **Red (#f8d7da)**: Missing/Broken components  
-- **Yellow (#fff3cd)**: Partial/Incomplete components
-- **Blue (#d1ecf1)**: Configured/Setup components
+- **Yellow (#fff3cd)**: Partial components
+- **Blue (#d1ecf1)**: Configured components
 
-## Connection Types
-- **Solid arrows (-->)**: Active/Working connections
-- **Dotted arrows (-.->)**: Missing/Broken connections
+## Data Flow Colors
+- **Light Blue (#e1f5fe)**: Input/Start
+- **Light Green (#c8e6c9)**: Output/Success
+- **Light Red (#ffcdd2)**: Error/Failure
+- **Light Yellow (#fff3cd)**: Warning/Process
+
+## Connections
+- **Solid (-->)**: Working connections
+- **Dotted (-.->)**: Missing connections
 - **Bidirectional (<-->)**: Two-way communication
+
+## Data Flow Rules
+
+### Node Types
+- **Input**: `["Name<br/>type: description"]`
+- **Process**: `["Action<br/>operation"]`
+- **Decision**: `{"Condition"}`
+- **Output**: `["Result<br/>description"]`
+
+### Edge Labels
+- **Conditions**: `|"condition"|`
+- **Flow**: `["transformation"]`
+
+### Colors
+- **Blue**: Input/Start
+- **Green**: Output/Success
+- **Red**: Error/Failure
+- **Yellow**: Warning/Process
+
+### Patterns
+- **Linear**: Sequential steps
+- **Branching**: Decision points
+- **Parallel**: Simultaneous processes
+- **Convergent**: Multiple inputs → One output
+- **Divergent**: One input → Multiple outputs
+
+### Best Practices
+1. Start with clear input
+2. Show validation steps
+3. Handle all errors
+4. End with clear output
+5. Use consistent naming
+6. Include data types
+7. Show transformations
 
 ## Required Sections
 
-### 1. System Architecture Overview
-- Group components by logical layers
-- Show all major components and their status
-- Include connection flows between components
-- Use consistent styling and color coding
+### 1. System Architecture
+- Group by layers
+- Show component status
+- Include connections
+- Use consistent colors
 
-### 2. Processing Flow Sequence
-- Show step-by-step process flow
-- Include user interactions
-- Highlight success and error paths
-- Show current system status
+### 2. Processing Flow
+- Step-by-step flow
+- User interactions
+- Success/error paths
+- Current status
 
-### 3. Component Status Summary Table
+### 3. Data Flow Diagrams
+- Detailed processing steps
+- Input/output specs
+- Error handling paths
+- Consistent styling
+
+### 4. Component Status Table
 | Component | Status | Description |
 |-----------|--------|-------------|
-| Component Name | ✅ Complete | Brief description |
+| Name | ✅ Complete | Brief description |
 
-### 4. Key Issues List
-- Numbered list of critical problems
-- Clear, actionable descriptions
+### 5. Key Issues
+- Numbered critical problems
+- Clear descriptions
 - Prioritized by impact
 
-### 5. Next Steps Required
-- Numbered list of required actions
-- Specific, implementable tasks
-- Ordered by priority/dependency
+### 6. Next Steps
+- Numbered actions
+- Specific tasks
+- Ordered by priority
 
 ## Best Practices
-1. **Consistency**: Use same status indicators throughout
-2. **Clarity**: Keep component names descriptive but concise
-3. **Completeness**: Include all major system components
-4. **Visual Hierarchy**: Group related components in subgraphs
-5. **Status Accuracy**: Ensure status reflects actual implementation state
-6. **Actionable**: Make issues and next steps specific and implementable
+1. **Consistency**: Same status indicators
+2. **Clarity**: Descriptive but concise names
+3. **Completeness**: Include all major components
+4. **Visual Hierarchy**: Group in subgraphs
+5. **Status Accuracy**: Reflect actual state
+6. **Actionable**: Specific tasks
+7. **Data Flow Clarity**: Clear transformations
+8. **Error Handling**: Include error paths
 
 ## Usage Examples
-- System architecture documentation
+- System architecture docs
 - Project status reports
 - Technical debt visualization
-- Integration flow documentation
+- Integration flow docs
 - Component dependency mapping
+- Data processing flows
+- API workflow visualization
+- Error handling flows
