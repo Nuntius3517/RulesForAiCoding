@@ -1,0 +1,38 @@
+---
+alwaysApply: false
+---
+Draw a directed flowchart with the following requirements:
+
+1. Layout Direction  
+   - Arrange nodes in a clear top-to-bottom (or left-to-right) layered structure.  
+   - Each layer represents a logical stage in the workflow.  
+
+2. Node Representation  
+   - Every component MUST be drawn as a distinct node (box, shape, or block).  
+   - Do NOT represent components as plain text floating in the diagram.  
+   - Do NOT use Markdown tables for node placement.  
+   - Do NOT use emojis in any part of the diagram. 
+   - Add header ## in each node titles 
+   - Using the edge curve arrow not the straight arrow
+
+3. Node Grouping  
+   - Group similar nodes into clusters (e.g., Processing, Storage, Monitoring).  
+   - Place deprecated or optional components in a separate faded/greyed cluster on the side.  
+
+4. Edge Styling  
+   - Use straight or orthogonal edges (right-angle connectors).  
+   - Minimize line crossings as much as possible.  
+   - Clearly indicate arrow direction.  
+
+5. Hierarchy Rules  
+   - Start with entry points at the top.  
+   - Middle layers: processing or service components.  
+   - Bottom layer: databases, file systems, or outputs.  
+   - Side clusters: legacy or optional modules.  
+
+6. Visual Clarity  
+   - Ensure spacing between layers is even.  
+   - Keep related nodes horizontally aligned within the same layer.  
+   - Use labels inside nodes for component names and short notes.  
+
+Follow all the above rules strictly when generating the diagram.

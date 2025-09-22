@@ -1,0 +1,21 @@
+---
+alwaysApply: false
+---
+Standard Mark Table (Synonym Auto-Conversion)
+TODO: todo, to-do, TBC, TBW
+FIXME: fixme, fix, broken, BUG
+HACK: hack, quickfix, hotfix, ugly
+WORKAROUND: workaround, tempfix
+OPTIMIZE: optimize, PERF, performance
+REFACTOR: refactor, clean-up, restructure
+NOTE: note, nb, info
+DOCS: doc, docme, document
+REVIEW: review, needs review
+DISCUSS: discuss, debate
+DEPRECATED: deprecated, obsolete
+LEGACY: legacy, old
+SECURITY: security, vuln, vulnerability
+TEMP: temp, provisional, WIP
+QUESTION: question, q?, why
+DEBUG: debug, logging-only
+CHORE: chore, maintenance
